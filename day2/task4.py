@@ -44,16 +44,6 @@ def rename_files():
 
         # 使用Windows自然排序
         image_files.sort(key=windows_natural_sort_key)
-
-        # 特殊调整：将倒数第三个移动到最后一个位置
-        if len(image_files) >= 3:
-            # 提取倒数第三个元素
-            third_last = image_files[-3]
-            # 移除倒数第三个元素
-            image_files = image_files[:-3] + image_files[-2:]
-            # 添加到末尾
-            image_files.append(third_last)
-            print("已应用特殊顺序调整：倒数第三个文件移到最后一个位置")
     except Exception as e:
         print(f"读取图片文件夹失败: {e}")
         return
@@ -65,7 +55,6 @@ def rename_files():
         return
 
     # 打印预览
-    print("\n将按以下顺序重命名文件 (已应用特殊调整):")
     print("序号 | 原文件名 -> 新文件名")
     print("-" * 50)
     for i, (old_name, new_name) in enumerate(zip(image_files, names)):
